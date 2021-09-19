@@ -1,13 +1,20 @@
 # IBM Cloud <module_name> - Terraform Module
 
-Mention the purpose of writing these modules.
+Terraform Module repository to create VPC VSI
 
-E.g:
 
-This is a collection of modules that make it easier to provision and configure Observability services like logging, monitor and activity tracker on IBM Cloud Platform:
-* [logging-logdna](modules/logging-logdna)
-* [monitoring-sysdig](modules/monitoring-sysdig)
-* [activity-tracker-logdna](modules/activity-tracker-logdna)
+Scenarios to construct sub-modules
+
+1. Most commonly used VPC network resources for VSI Creation
+2. Creation of VSI using a template
+3. Grouping the VSIs
+4. Bastion host creation
+5. Creation of custom Image for the VSI
+6. Creation of SSH key for the VSI
+7. Assigning Public/FFloating IPs to the VSI
+8. Attaching storage to the VSI
+9. Creation of VSI on dedicated host/group
+
 
 ## Compatibility
 
@@ -16,34 +23,6 @@ This module is meant for use with Terraform 0.13 (and higher).
 ## Usage
 
 Full examples are in the [examples](./examples/) folder, demonstarte how to use a module through a template:
-
-e.g:
-
-```hcl
-provider "ibm" {
-}
-
-data "ibm_resource_group" "logdna" {
-  name = var.resource_group
-}
-
-module "logdna_instance" {
-  source  = "terraform-ibm-modules/observability/ibm//modules/logging-logdna"
-
-
-  bind_resource_key   = var.bind_resource_key
-  service_name        = var.service_name
-  resource_group_id   = data.ibm_resource_group.logdna.id
-  plan                = var.plan
-  region              = var.region
-  service_endpoints   = var.service_endpoints
-  tags                = var.tags
-  resource_key_name   = var.resource_key_name
-  role                = var.role
-  resource_key_tags   = var.resource_key_tags
-}
-
-```
 
 ## Requirements
 
